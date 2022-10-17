@@ -71,11 +71,9 @@ def damage_done(board):
             if column == "X":
                 count += 1
     return count
-
     
-
 create_battleship(BATTLE_BOARD)
-turns = 10
+turns = 7
 while turns > 0:
     print("The battle begins!")
     game_board(DAMAGE_BOARD)
