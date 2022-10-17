@@ -27,6 +27,16 @@ def game_board(game):
     row_number = 1 
     for row in game:
         print("%d|%s" % (row_number, "|".join(row)))
+        row_number += 1
+
+letters_to_numbers = {
+    'a': 0,
+    'b': 1,
+    'c': 2,
+    'd': 3,
+    'e': 4,
+    'f': 5
+}
     #for player_row in player_board:
         #print(" ".join(player_row))
 
