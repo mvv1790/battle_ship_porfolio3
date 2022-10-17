@@ -17,6 +17,9 @@ DAMAGE_BOARD = [[' '] * 6 for x in range(6)]
 #letters to numbers conversion
 letters_numbers = {'a':0,'b':1,'c':2,'d':3,'e':4,'f':5,}
 
+name = input('Enter your name:')
+print('Hello, ' + name) 
+
 #create game board
 def game_board(game):
     """
@@ -29,14 +32,6 @@ def game_board(game):
         print("%d|%s" % (row_number, "|".join(row)))
         row_number += 1
 
-letters_to_numbers = {
-    'a': 0,
-    'b': 1,
-    'c': 2,
-    'd': 3,
-    'e': 4,
-    'f': 5
-}
     #for player_row in player_board:
         #print(" ".join(player_row))
 
@@ -99,5 +94,5 @@ while turns > 0:
         print("You have won the battle, but not the war!")
         break
     if turns == 0:
-        print("You have lost the batle, but not the war!")
+        print("You have lost the battle " +name, "but not the war!")
         break
