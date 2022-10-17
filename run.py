@@ -54,6 +54,9 @@ def create_battleship(board):
 
 
 def seek_battleship():
+    """
+    The loop of the game with messages depending on the outcome of an action
+    """
     row = input("Seek your foe's number...")
     while row not in '123456':
         print("Try again!")
@@ -65,6 +68,9 @@ def seek_battleship():
     return int(row) - 1, letters_numbers[column]
 
 def damage_done(board):
+    """
+    Counter of hits delivered to an enemy
+    """
     count = 0 
     for row in board:
         for column in row:
@@ -73,6 +79,7 @@ def damage_done(board):
     return count
     
 create_battleship(BATTLE_BOARD)
+
 turns = 7
 while turns > 0:
     print("The battle begins!")
