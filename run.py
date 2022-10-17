@@ -56,7 +56,7 @@ def seek_battleship():
 
 def damage_done(board):
     count = 0 
-    for row in boarda:
+    for row in board:
         for column in row:
             if column == "X":
                 count += 1
@@ -64,7 +64,7 @@ def damage_done(board):
 
     
 
-create_battleship()
-print_board(BATTLE_BOARD)
-print_board(FOE_BOARD)
+create_battleship(BATTLE_BOARD)
+game_board(BATTLE_BOARD)
+game_board(FOE_BOARD)
 turns = 10
