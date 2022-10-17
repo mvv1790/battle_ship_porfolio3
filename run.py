@@ -7,9 +7,15 @@
 # O miss
 
 from random import randint
-"""
 
-"""
+ai_alive = 17
+ai_radar = []
+ai_board = []
+ship_position = [] # Stores the first hit of ships which will be eliminated [row, col]
+ship_length = [] # Stores the length of ship on first hit
+
+
+
 # 6 x 6 game board
 BATTLE_BOARD = [[' '] * 7 for x in range(6)]
 DAMAGE_BOARD = [[' '] * 7 for x in range(6)]
@@ -52,10 +58,14 @@ def create_battleship(board):
             boat_row, boat_column = randint(0, 5), randint(0, 5) 
         board[boat_row][boat_column] = 'X'    
 
+#def ai_attack(ai_guess_column, ai_guess_row):
+   #ai_guess_row = randint(0, 5)
+    #ai_guess_column = randint(0, 5)
+
 
 def seek_battleship():
     """
-    The loop of the game with messages depending on the outcome of an action
+    The loop of the game with messages depending on the input
     """
     row = input("Seek your foe's number (from 1 to 6)...")
     while row not in '123456':
@@ -81,7 +91,6 @@ def damage_done(board):
 # The rule of 7 turns, after which the game ends
 turns = 7
 while turns > 0:
-
     game_board(DAMAGE_BOARD)
     row, column = seek_battleship()
     if  DAMAGE_BOARD[row][column] == 'O':
