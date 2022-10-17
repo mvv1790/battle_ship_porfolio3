@@ -1,7 +1,7 @@
 # Your code goes here.
 # You can delete these comments, but do not change the name of this file
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
-# Game rules:
+# Game's rules:
 # X for boat position
 # ' ' vacant space
 # - miss
@@ -12,7 +12,7 @@ from random import randint
 """
 # 8 x 8 board, game standard
 BATTLE_BOARD = [[' '] * 6 for x in range(6)]
-FOE_BOARD = [[' '] * 6 for x in range(6)]
+DAMAGE_BOARD = [[' '] * 6 for x in range(6)]
 
 #letters to numbers conversion
 letters_numbers = {'a':0,'b':1,'c':2,'d':3,'e':4,'f':5,}
@@ -54,11 +54,11 @@ def create_battleship(board):
 
 
 def seek_battleship():
-    row = input("Seek your foe's number!")
+    row = input("Seek your foe's number...")
     while row not in '123456':
         print("Try again!")
         row = input("Launch your attack!")
-    column = input("Seek your foe's letter!")
+    column = input("Seek your foe's letter...")
     while column not in "abcdef":
         print("Try again!")
         column = input("Seek your foe's letter!")
@@ -75,7 +75,24 @@ def damage_done(board):
     
 
 create_battleship(BATTLE_BOARD)
-game_board(BATTLE_BOARD)
-game_board(FOE_BOARD)
 turns = 10
-#while turn > 0:
+while turns > 0:
+    print("The battle begins!")
+    game_board(DAMAGE_BOARD)
+    row, column = seek_battleship()
+    if  DAMAGE_BOARD[row][column] == '-':
+        print("This target has been hit before...")
+    elif BATTLE_BOARD[row][column] == "X":
+        print("Good shot!")
+        DAMAGE_BOARD[row][column] = "X"
+        turns -= 1
+    else:
+        print("Better get some goggles!")
+        DAMAGE_BOARD[row][column] = "-"
+        turns -= 1
+    if damage_done(DAMAGE_BOARD) == 3:
+        print("You have won the battle, but not the war!")
+        break
+    if turns == 0:
+        print("You have lost the batle, but not the war!")
+        break
