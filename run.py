@@ -35,18 +35,18 @@ def game_board(game):
     Prints letters and the upper border of the game field
     """
     
-    print('  a b c d e f')
-    print(' -------------')
-    row_number = 0
+    print('   a b c d e f')
+    print('  -------------')
+    row_number = 1
     for row in game:
-        print("%d|%s|" % (row_number, "|".join(row)))
+        print(row_number,'|' + '|'.join(row) + '|')
         row_number += 1
 
 
 
 def create_battleship(board):
     """
-    Creates 3 battle ships on the board
+    Creates 7 battle ships on the board
     """
     for boat in range(7):
         boat_row, boat_column = randint(0, 5), randint(0, 5)
