@@ -24,11 +24,14 @@ DAMAGE_BOARD = [[' '] * 6 for i in range(6)]
 letters_numbers = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5}
 
 # Player name input
+print("------------------------------")
 name = input("You shall be known as: ")
 print("Greetings, " + name)
+print("------------------------------")
 
 # Start game message
 print("The Battle Begins Admiral " + name)
+print("---------------------------------")
 
 # Create game board
 def game_board(game):
@@ -41,7 +44,7 @@ def game_board(game):
     print('  -------------')
     row_number = 1
     for row in game:
-        print(row_number,'|' + '|'.join(row) + '|')
+        print(row_number, '|' + '|'.join(row) + '|')
         row_number += 1
 
 
@@ -90,23 +93,36 @@ while turns > 0:
     game_board(DAMAGE_BOARD)
     row, column = seek_battleship()
     if  DAMAGE_BOARD[row][column] == 'O':
+        print("----------------------------------")
         print("This target has been hit before...")
+        print("----------------------------------")
     elif BATTLE_BOARD[row][column] == "X":
         SCORE += 1 
+        print("----------")
         print("Good shot!")
+        print("---------------------")
         print("Your score is:", SCORE)
+        print("---------------------")
         DAMAGE_BOARD[row][column] = "X"
         turns -= 1
     else:
+        print("------------------------")
         print("Better get some goggles!")
+        print("------------------------")
         DAMAGE_BOARD[row][column] = "O"
+        print("---------------------")
         print("Your score is:", SCORE)
+        print("---------------------")
         turns -= 1
     if damage_done(DAMAGE_BOARD) == 4:
+        print("--------------------------------------------------")
         print("You have won the battle" + name, "but not the war!")
         print("Your final score is: ", SCORE, "out of 7.")
+        print("--------------------------------------------------")
         break
     if turns == 0:
+        print("--------------------------------------------------")
         print("You have lost the battle " + name, "but not the war!")
         print("Your final score is: ", SCORE, "out of 7.")
+        print("--------------------------------------------------")
         break   
