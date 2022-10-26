@@ -12,10 +12,12 @@ SIZE = 6
 
 palyer_board = []
 
+SCORE = 0
+
 # 6 x 6 game board and ship locations
 BATTLE_BOARD = [[' '] * 6 for x in range(6)]
 
-# hits and misses
+# a hidded board that records hits and misses
 DAMAGE_BOARD = [[' '] * 6 for i in range(6)]
 
 # Letters to numbers conversion
@@ -72,7 +74,7 @@ def seek_battleship():
 
 def damage_done(board):
     """
-    Counter of hits delivered to an enemy
+    Detects hits delivered to an enemy
     """
     count = 0 
     for row in board:
@@ -90,16 +92,21 @@ while turns > 0:
     if  DAMAGE_BOARD[row][column] == 'O':
         print("This target has been hit before...")
     elif BATTLE_BOARD[row][column] == "X":
+        SCORE += 1 
         print("Good shot!")
+        print("Your score is:", SCORE)
         DAMAGE_BOARD[row][column] = "X"
         turns -= 1
     else:
         print("Better get some goggles!")
         DAMAGE_BOARD[row][column] = "O"
+        print("Your score is:", SCORE)
         turns -= 1
-    if damage_done(DAMAGE_BOARD) == 3:
+    if damage_done(DAMAGE_BOARD) == 4:
         print("You have won the battle" + name, "but not the war!")
+        print("Your final score is: ", SCORE, "out of 7.")
         break
     if turns == 0:
         print("You have lost the battle " + name, "but not the war!")
-        break
+        print("Your final score is: ", SCORE, "out of 7.")
+        break   
