@@ -1,9 +1,7 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
-# Game's rules:
-# X for boat position
-# ' ' - vacant space
+"""The Battel Ship Game"""
+# Game's rules
+# ' ' -  space
+# X - hit
 # O - miss
 
 from random import randint
@@ -23,15 +21,22 @@ DAMAGE_BOARD = [[' '] * 6 for i in range(6)]
 # Letters to numbers conversion
 letters_numbers = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5}
 
-# Player name input
-print("------------------------------")
-name = input("You shall be known as: ")
-print("Greetings, " + name)
-print("------------------------------")
 
+# Player name input
+try:
+    print("------------------------------")
+    name = input("You shall be known as: ")
+    print("Greetings, " + name)
+    print("------------------------------")
+except EOFError as e:
+    print(e)
 # Start game message
-print("The Battle Begins Admiral " + name)
-print("---------------------------------")
+try:
+    print("The Battle Begins Admiral " + name)
+    print("---------------------------------")
+except EOFError as e:
+    print(e)
+
 
 # Create game board
 def game_board(game):
@@ -39,7 +44,6 @@ def game_board(game):
     Defines the board of the game
     Prints letters and the upper border of the game field
     """
-    
     print('   a b c d e f')
     print('  -------------')
     row_number = 1
@@ -47,6 +51,17 @@ def game_board(game):
         print(row_number, '|' + '|'.join(row) + '|')
         row_number += 1
 
+
+def enemy_board(game):
+    """
+    Enemy game board
+    """
+    print('   a b c d e f')
+    print('  -------------')
+    row_number = 1
+    for row in game:
+        print(row_number, '|' + '|'.join(row) + '|')
+        row_number += 1
 
 
 def create_battleship(board):
@@ -58,7 +73,6 @@ def create_battleship(board):
         while board[boat_row][boat_column] == 'X':
             boat_row, boat_column = seek_battleship()
         board[boat_row][boat_column] = 'X'
-            
 
 
 def seek_battleship():
@@ -74,12 +88,13 @@ def seek_battleship():
         print("Play by the rules!")
         column = input("Seek your foe's letter! (letters from 'a' to 'f')")
     return int(row) - 1, letters_numbers[column]
+    
 
 def damage_done(board):
     """
     Detects hits delivered to an enemy
     """
-    count = 0 
+    count = 0
     for row in board:
         for column in row:
             if column == "X":
@@ -87,42 +102,48 @@ def damage_done(board):
     return count
 
 # The rule of 7 turns, after which the game ends
-turns = 7
+
+
+TURNS = 7
+
+
 create_battleship(BATTLE_BOARD)
-while turns > 0:
+
+
+while TURNS > 0:
     game_board(DAMAGE_BOARD)
     row, column = seek_battleship()
-    if  DAMAGE_BOARD[row][column] == 'O':
+    if DAMAGE_BOARD[row][column] == 'O':
         print("----------------------------------")
         print("This target has been hit before...")
         print("----------------------------------")
     elif BATTLE_BOARD[row][column] == "X":
-        SCORE += 1 
+        SCORE += 1
         print("----------")
         print("Good shot!")
         print("---------------------")
-        print("Your score is:", SCORE)
+        print(name + " your score is:", SCORE)
         print("---------------------")
         DAMAGE_BOARD[row][column] = "X"
-        turns -= 1
+        TURNS -= 1
     else:
         print("------------------------")
         print("Better get some goggles!")
         print("------------------------")
         DAMAGE_BOARD[row][column] = "O"
         print("---------------------")
-        print("Your score is:", SCORE)
+        print(name + " your score is:", SCORE)
         print("---------------------")
-        turns -= 1
+        TURNS -= 1
     if damage_done(DAMAGE_BOARD) == 4:
         print("--------------------------------------------------")
         print("You have won the battle" + name, "but not the war!")
         print("Your final score is: ", SCORE, "out of 7.")
         print("--------------------------------------------------")
         break
-    if turns == 0:
+    if TURNS == 0:
         print("--------------------------------------------------")
         print("You have lost the battle " + name, "but not the war!")
-        print("Your final score is: ", SCORE, "out of 7.")
+        print("Your final score is:", SCORE, "out of 7.")
         print("--------------------------------------------------")
-        break   
+        break
