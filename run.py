@@ -101,6 +101,7 @@ TURNS = 7
 
 
 create_battleship(BATTLE_BOARD)
+print(BATTLE_BOARD)
 
 
 while TURNS > 0:
@@ -135,7 +136,7 @@ while TURNS > 0:
         SOCRE_AI += 1
     if damage_done(DAMAGE_BOARD) == 3:
         print("--------------------------------------------------")
-        print("You have won the battle" + name, "but not the war!")
+        print("You have won the battle " + name, "but not the war!")
         print("Your final score is: ", SCORE, "out of 7.")
         print("--------------------------------------------------")
         break
