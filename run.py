@@ -101,7 +101,6 @@ TURNS = 7
 
 
 create_battleship(BATTLE_BOARD)
-print(BATTLE_BOARD)
 
 
 while TURNS > 0:
