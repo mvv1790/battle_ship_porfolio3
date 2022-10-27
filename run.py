@@ -6,17 +6,20 @@
 
 from random import randint
 
-SIZE = 6
-
-palyer_board = []
+guess_row = []
+guess_col = []
 
 SCORE = 0
+SOCRE_AI = 0
+BOAT_LENGTH = [2, 3, 4]
 
 # 6 x 6 game board and ship locations
 BATTLE_BOARD = [[' '] * 6 for x in range(6)]
+BATTLE_BOARD_AI = [[' '] * 6 for x in range(6)]
 
 # a hidded board that records hits and misses
 DAMAGE_BOARD = [[' '] * 6 for i in range(6)]
+DAMAGE_BOARD_AI = [[' '] * 6 for x in range(6)]
 
 # Letters to numbers conversion
 letters_numbers = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5}
@@ -77,7 +80,7 @@ def create_battleship(board):
 
 def seek_battleship():
     """
-    The loop of the game with messages depending on the input
+    The messages that appear depending on the input
     """
     row = input("Seek your foe's number (from 1 to 6)...")
     while row not in '123456':
@@ -88,7 +91,7 @@ def seek_battleship():
         print("Play by the rules!")
         column = input("Seek your foe's letter! (letters from 'a' to 'f')")
     return int(row) - 1, letters_numbers[column]
-    
+
 
 def damage_done(board):
     """
@@ -100,6 +103,7 @@ def damage_done(board):
             if column == "X":
                 count += 1
     return count
+
 
 # The rule of 7 turns, after which the game ends
 
@@ -117,12 +121,15 @@ while TURNS > 0:
         print("----------------------------------")
         print("This target has been hit before...")
         print("----------------------------------")
+        print("Computer hits the same target")
     elif BATTLE_BOARD[row][column] == "X":
         SCORE += 1
+        SOCRE_AI -= 1
         print("----------")
         print("Good shot!")
         print("---------------------")
         print(name + " your score is:", SCORE)
+        print("Computer score is:", SOCRE_AI)
         print("---------------------")
         DAMAGE_BOARD[row][column] = "X"
         TURNS -= 1
@@ -133,9 +140,11 @@ while TURNS > 0:
         DAMAGE_BOARD[row][column] = "O"
         print("---------------------")
         print(name + " your score is:", SCORE)
+        print("Computer score is:", SOCRE_AI)
         print("---------------------")
         TURNS -= 1
-    if damage_done(DAMAGE_BOARD) == 4:
+        SOCRE_AI += 1
+    if damage_done(DAMAGE_BOARD) == 3:
         print("--------------------------------------------------")
         print("You have won the battle" + name, "but not the war!")
         print("Your final score is: ", SCORE, "out of 7.")
