@@ -13,11 +13,9 @@ BOAT_LENGTH = [2, 3, 4]
 
 # 6 x 6 game board and ship locations
 BATTLE_BOARD = [[' '] * 6 for x in range(6)]
-BATTLE_BOARD_AI = [[' '] * 6 for x in range(6)]
 
 # a hidded board that records hits and misses
 DAMAGE_BOARD = [[' '] * 6 for i in range(6)]
-DAMAGE_BOARD_AI = [[' '] * 6 for x in range(6)]
 
 # Letters to numbers conversion
 letters_numbers = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5}
@@ -101,7 +99,6 @@ TURNS = 7
 
 
 create_battleship(BATTLE_BOARD)
-print(BATTLE_BOARD)
 
 
 while TURNS > 0:
