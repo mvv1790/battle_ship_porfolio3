@@ -6,8 +6,6 @@
 
 from random import randint
 
-guess_row = []
-guess_col = []
 
 SCORE = 0
 SOCRE_AI = 0
@@ -27,10 +25,13 @@ letters_numbers = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5}
 
 # Player name input
 try:
-    print("------------------------------")
+    print("---------------------------------")
     name = input("You shall be known as: ")
-    print("Greetings, " + name)
-    print("------------------------------")
+    print("---------------------------------")
+    print("Greetings, " + name, ". There\nare seven enemy ships,")
+    print("destroy at least three of them\nto win the battle before")
+    print("the 7th turn.")
+    print("---------------------------------")
 except EOFError as e:
     print(e)
 # Start game message
@@ -46,18 +47,6 @@ def game_board(game):
     """
     Defines the board of the game
     Prints letters and the upper border of the game field
-    """
-    print('   a b c d e f')
-    print('  -------------')
-    row_number = 1
-    for row in game:
-        print(row_number, '|' + '|'.join(row) + '|')
-        row_number += 1
-
-
-def enemy_board(game):
-    """
-    Enemy game board
     """
     print('   a b c d e f')
     print('  -------------')
@@ -112,6 +101,7 @@ TURNS = 7
 
 
 create_battleship(BATTLE_BOARD)
+print(BATTLE_BOARD)
 
 
 while TURNS > 0:
