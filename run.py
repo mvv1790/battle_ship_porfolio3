@@ -5,6 +5,7 @@
 # O - miss
 
 from random import randint
+import os
 
 
 SCORE = 0
@@ -20,6 +21,29 @@ DAMAGE_BOARD = [[' '] * 6 for i in range(6)]
 # Letters to numbers conversion
 letters_numbers = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5}
 
+# Title screen
+print('                           __                           ')
+print('                        ___\_\____        ___           ')
+print('                     __/    [____]\      /       _____  ')
+print('                ____|__|___________|____/\______/\___   ')
+print('                \  []  []  []  []  []  []  []  []   /   ')
+print('                 \                                 /    ')
+print('                  \_______________________________/     ')
+print('')
+print('     ____       ___      __________  __________  __       ______  ')
+print('    || \ \     / \ \     \________/  \________/  ||      |        ')
+print('    || / /    /   \ \        ||          ||      ||      |______  ')
+print('    || \ \   /_____\ \       ||          ||      ||___   |        ')
+print('    || / /  /       \ \      ||          ||      |____\  |______  ')
+print('                                                                  ')
+print('                        _       ()  __                            ')
+print('                       /_  |__| || |[]|                           ')
+print('                       _/  |  | || ||                             ')
+print('                                                                  ')
+print('                                                                  ')
+print('                                                                  ')
+input("Press Enter to continue...")
+os.system('clear')
 
 # Player name input
 try:
@@ -100,7 +124,6 @@ TURNS = 7
 
 create_battleship(BATTLE_BOARD)
 
-
 while TURNS > 0:
     game_board(DAMAGE_BOARD)
     row, column = seek_battleship()
@@ -122,7 +145,7 @@ while TURNS > 0:
         TURNS -= 1
     else:
         print("------------------------")
-        print("Better get some goggles!")
+        print("Better get that telescope!")
         print("------------------------")
         DAMAGE_BOARD[row][column] = "O"
         print("---------------------")
