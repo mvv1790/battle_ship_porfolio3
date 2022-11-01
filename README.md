@@ -3,4 +3,4 @@
   
   The players may try to beat the game by destroying ships placed at random on a 6 by 6 board.
   
-  
+<img src=”(![image](https://user-images.githubusercontent.com/104979865/199277837-2bd6c8a0-cf1e-4826-bdca-3d974681ccaa.png))”>  
