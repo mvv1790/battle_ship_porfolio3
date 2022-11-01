@@ -1,6 +1,6 @@
 """The Battel Ship Game"""
 # Game's rules
-# ' ' -  space
+# ' ' -  sea
 # X - hit
 # O - miss
 
@@ -10,7 +10,6 @@ import os
 
 SCORE = 0
 SOCRE_AI = 0
-BOAT_LENGTH = [2, 3, 4]
 
 # 6 x 6 game board and ship locations
 BATTLE_BOARD = [[' '] * 6 for x in range(6)]
@@ -50,7 +49,7 @@ try:
     print("---------------------------------")
     name = input("You shall be known as: ")
     print("---------------------------------")
-    print("Greetings, " + name, ". There\nare seven enemy ships,")
+    print(f"Greetings, {name}. There\nare seven enemy ships,")
     print("destroy at least three of them\nto win the battle before")
     print("the 7th turn.")
     print("---------------------------------")
@@ -58,14 +57,14 @@ except EOFError as e:
     print(e)
 # Start game message
 try:
-    print("The Battle Begins Admiral " + name)
+    print(f"The Battle Begins Admiral {name}.")
     print("---------------------------------")
 except EOFError as e:
     print(e)
 
 
 # Create game board
-def game_board(game):
+def game_board(board):
     """
     Defines the board of the game
     Prints letters and the upper border of the game field
@@ -73,7 +72,7 @@ def game_board(game):
     print('   a b c d e f')
     print('  -------------')
     row_number = 1
-    for row in game:
+    for row in board:
         print(row_number, '|' + '|'.join(row) + '|')
         row_number += 1
 
@@ -82,7 +81,12 @@ def create_battleship(board):
     """
     Creates 7 battle ships on the board
     """
-    for boat in range(7):
+    boats = {
+        "boat_a": 2,
+        "boat_b": 3,
+        "boat_c": 3,
+        "boat_d": 4}
+    for boats in range(7):
         boat_row, boat_column = randint(0, 5), randint(0, 5)
         while board[boat_row][boat_column] == 'X':
             boat_row, boat_column = seek_battleship()
@@ -91,7 +95,7 @@ def create_battleship(board):
 
 def seek_battleship():
     """
-    The messages that appear depending on the input
+    Function checks player input
     """
     row = input("Seek your foe's number (from 1 to 6)...")
     while row not in '123456':
@@ -124,6 +128,7 @@ TURNS = 7
 
 create_battleship(BATTLE_BOARD)
 
+
 while TURNS > 0:
     game_board(DAMAGE_BOARD)
     row, column = seek_battleship()
@@ -138,7 +143,7 @@ while TURNS > 0:
         print("----------")
         print("Good shot!")
         print("---------------------")
-        print(name + " your score is:", SCORE)
+        print(f"{name} your score is:", SCORE)
         print("Computer score is:", SOCRE_AI)
         print("---------------------")
         DAMAGE_BOARD[row][column] = "X"
@@ -149,20 +154,22 @@ while TURNS > 0:
         print("------------------------")
         DAMAGE_BOARD[row][column] = "O"
         print("---------------------")
-        print(name + " your score is:", SCORE)
+        print(f"{name} your score is:", SCORE)
         print("Computer score is:", SOCRE_AI)
         print("---------------------")
         TURNS -= 1
         SOCRE_AI += 1
     if damage_done(DAMAGE_BOARD) == 3:
+        game_board(DAMAGE_BOARD)
         print("--------------------------------------------------")
-        print("You have won the battle " + name, "but not the war!")
-        print("Your final score is: ", SCORE, "out of 7.")
-        print("--------------------------------------------------")
-        break
+        print(f"Well done Admiral {name}, you have sunk", SCORE, "ships!")
+        print(f"You have won the battle {name}, but not the war!")
+        print("-------------------------------------------------------")
+        exit()
     if TURNS == 0:
-        print("--------------------------------------------------")
-        print("You have lost the battle " + name, "but not the war!")
-        print("Your final score is:", SCORE, "out of 7.")
-        print("--------------------------------------------------")
-        break
+        game_board(DAMAGE_BOARD)
+        print("------------------------------------------------------")
+        print(f"You have lost the battle {name}, but not the war!")
+        print("Your final count of ships sunk is:", SCORE, "out of 7.")
+        print("------------------------------------------------------")
+        exit()
