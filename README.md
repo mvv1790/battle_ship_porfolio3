@@ -2,5 +2,5 @@
   This is a simple game that runs through a terminal provided by the Code Institute on Heroku.
   
   The players may try to beat the game by destroying ships placed at random on a 6 by 6 board.
-  
-<img src=”(![image](https://user-images.githubusercontent.com/104979865/199277837-2bd6c8a0-cf1e-4826-bdca-3d974681ccaa.png))”>  
+   
+![Am I Responsive_ — Mozilla Firefox 01_11_2022 16_51_25 (2)](https://user-images.githubusercontent.com/104979865/199278084-ca674406-80e7-4ddc-9e68-2174745061a2.png)
